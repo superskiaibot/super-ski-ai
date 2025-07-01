@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Custom styles for Leaflet map */
+.leaflet-container {
+  @apply rounded-lg shadow-lg;
+}
+
+.leaflet-popup-content-wrapper {
+  @apply rounded-lg shadow-lg;
+}
+
+.leaflet-popup-tip {
+  @apply shadow-lg;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-snow-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-powder-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-powder-400;
+}
+
+/* Ski-themed animations */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+.snowflake {
+  animation: snowfall linear infinite;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Button hover effects */
+.btn-ski {
+  @apply bg-ski-gradient text-white font-semibold py-2 px-4 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105 hover:shadow-xl;
+}
+
+.btn-powder {
+  @apply bg-powder-500 hover:bg-powder-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105;
+}
+
+.card-ski {
+  @apply bg-white rounded-xl shadow-lg p-6 transform transition-all duration-200 hover:shadow-xl hover:-translate-y-1;
+}
+
+/* Input styles */
+.input-ski {
+  @apply w-full px-4 py-2 border border-snow-300 rounded-lg focus:ring-2 focus:ring-powder-500 focus:border-transparent transition-all duration-200;
+}
+
+/* Stats cards */
+.stat-card {
+  @apply bg-gradient-to-br from-white to-snow-50 rounded-xl p-6 shadow-lg border border-snow-200;
+}
+
+/* Navigation styles */
+.nav-link {
+  @apply px-4 py-2 rounded-lg transition-all duration-200 hover:bg-powder-50 hover:text-powder-600;
+}
+
+.nav-link.active {
+  @apply bg-powder-100 text-powder-700 font-semibold;
+}
