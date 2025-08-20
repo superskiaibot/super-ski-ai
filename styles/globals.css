@@ -1,0 +1,1051 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Snowline Brand Colors */
+  --ultra-ice-blue: #004cff;
+  --midnight: #07111a;
+  --snow: #ffffff;
+  --avalanche-orange: #ff5500;
+  
+  /* Extended Snowline Palette */
+  --glacier-blue: #e6f3ff;
+  --powder-gray: #f8fafc;
+  --mountain-green: #22c55e;
+  --warning-yellow: #f59e0b;
+  --danger-red: #ef4444;
+  
+  /* Core System Colors */
+  --background: 0 0% 100%;
+  --foreground: 220 60% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 60% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 60% 8%;
+  --primary: 221 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 221 100% 97%;
+  --secondary-foreground: 220 60% 8%;
+  --muted: 220 14% 98%;
+  --muted-foreground: 220 9% 46%;
+  --accent: 221 100% 97%;
+  --accent-foreground: 220 60% 8%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 221 100% 50%;
+  --radius: 12px;
+  
+  /* Snowline Specific Variables */
+  --tracking-active: #22c55e;
+  --tracking-warning: #f59e0b;
+  --tracking-danger: #ff5500;
+  --elevation-gradient: linear-gradient(135deg, #004cff, #e6f3ff);
+  --mountain-shadow: 0 4px 24px -4px rgba(0, 76, 255, 0.1);
+  --powder-shadow: 0 2px 16px -2px rgba(7, 17, 26, 0.05);
+  --premium-card-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.12);
+  --premium-card-shadow-hover: 0 16px 48px -8px rgba(0, 0, 0, 0.18);
+  
+  /* Chart Colors - Snowline themed */
+  --chart-1: 221 100% 50%;
+  --chart-2: 142 76% 36%;
+  --chart-3: 16 100% 50%;
+  --chart-4: 38 92% 50%;
+  --chart-5: 280 65% 60%;
+
+  /* INSTANT FULLSCREEN POSITIONING SYSTEM */
+  /* CSS Variables for instant analytics card positioning */
+  --analytics-cards-top: auto;
+  --analytics-cards-bottom: 16px;
+  --analytics-cards-left: 16px;
+  --analytics-cards-right: 16px;
+  --analytics-cards-transform: translateY(0);
+  --analytics-cards-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --analytics-cards-z-index: 20;
+  
+  /* Fullscreen state variables */
+  --analytics-cards-grid-template: repeat(3, 1fr);
+  --analytics-cards-max-width: 384px; /* max-w-xs = 20rem */
+  --analytics-cards-gap: 12px;
+  --analytics-cards-justify: center;
+  --analytics-cards-flex-direction: grid;
+  
+  /* Card sizing variables */
+  --analytics-card-padding: 12px;
+  --analytics-card-border-radius: 12px;
+  --analytics-card-min-width: auto;
+  --analytics-icon-size: 32px;
+  --analytics-icon-border-radius: 9999px;
+  --analytics-text-size: 18px;
+}
+
+/* FULLSCREEN MODE OVERRIDES - INSTANT POSITIONING */
+.fullscreen-mode {
+  /* Update CSS variables for fullscreen positioning */
+  --analytics-cards-top: 80px;
+  --analytics-cards-bottom: auto;
+  --analytics-cards-transition: none; /* INSTANT - No transitions in fullscreen */
+  
+  /* Fullscreen card layout changes */
+  --analytics-cards-grid-template: none;
+  --analytics-cards-max-width: 448px; /* max-w-sm = 24rem */
+  --analytics-cards-gap: 12px;
+  --analytics-cards-justify: center;
+  --analytics-cards-flex-direction: flex;
+  
+  /* Fullscreen card sizing */
+  --analytics-card-padding: 12px;
+  --analytics-card-border-radius: 16px;
+  --analytics-card-min-width: 88px;
+  --analytics-icon-size: 40px;
+  --analytics-icon-border-radius: 16px;
+  --analytics-text-size: 20px;
+}
+
+.dark {
+  /* Dark mode with Snowline aesthetic */
+  --background: 220 60% 8%;
+  --foreground: 0 0% 100%;
+  --card: 220 39% 11%;
+  --card-foreground: 0 0% 100%;
+  --popover: 220 39% 11%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 221 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 39% 15%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 220 39% 15%;
+  --muted-foreground: 220 5% 65%;
+  --accent: 220 39% 15%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 39% 15%;
+  --input: 220 39% 15%;
+  --ring: 221 100% 50%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+    font-variation-settings: "wght" 400;
+    letter-spacing: -0.01em;
+  }
+  
+  /* Snowline Typography Scale - 8pt grid system */
+  h1 {
+    @apply text-4xl font-bold tracking-tight;
+    font-variation-settings: "wght" 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    @apply text-3xl font-semibold tracking-tight;
+    font-variation-settings: "wght" 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+  
+  h3 {
+    @apply text-2xl font-semibold tracking-tight;
+    font-variation-settings: "wght" 600;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+  }
+  
+  h4 {
+    @apply text-xl font-semibold tracking-tight;
+    font-variation-settings: "wght" 600;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+  }
+  
+  h5 {
+    @apply text-lg font-medium tracking-tight;
+    font-variation-settings: "wght" 500;
+    line-height: 1.4;
+  }
+  
+  h6 {
+    @apply text-base font-medium tracking-tight;
+    font-variation-settings: "wght" 500;
+    line-height: 1.5;
+  }
+  
+  p {
+    @apply leading-relaxed text-base;
+    font-variation-settings: "wght" 400;
+  }
+  
+  .text-metric {
+    font-variation-settings: "wght" 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  
+  .text-label {
+    @apply text-sm font-medium text-muted-foreground;
+    font-variation-settings: "wght" 500;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+  }
+  
+  blockquote {
+    @apply mt-6 border-l-2 pl-6 italic;
+    border-left-color: hsl(var(--primary));
+  }
+  
+  ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  }
+  
+  ol {
+    @apply my-6 ml-6 list-decimal [&>li]:mt-2;
+  }
+  
+  code {
+    @apply relative rounded-md bg-muted px-2 py-1 font-mono text-sm font-semibold;
+  }
+  
+  pre {
+    @apply overflow-x-auto rounded-xl bg-muted p-6;
+  }
+  
+  pre code {
+    @apply bg-transparent p-0;
+  }
+}
+
+/* Snowline Brand Color Utilities */
+@layer utilities {
+  .bg-midnight {
+    background-color: var(--midnight);
+  }
+  
+  .bg-snow {
+    background-color: var(--snow);
+  }
+  
+  .bg-ultra-ice-blue {
+    background-color: var(--ultra-ice-blue);
+  }
+  
+  .bg-avalanche-orange {
+    background-color: var(--avalanche-orange);
+  }
+  
+  .text-midnight {
+    color: var(--midnight);
+  }
+  
+  .text-snow {
+    color: var(--snow);
+  }
+  
+  .text-ultra-ice-blue {
+    color: var(--ultra-ice-blue);
+  }
+  
+  .text-avalanche-orange {
+    color: var(--avalanche-orange);
+  }
+
+  .text-glacier-blue {
+    color: var(--glacier-blue);
+  }
+
+  .text-powder-gray {
+    color: var(--powder-gray);
+  }
+
+  .text-mountain-green {
+    color: var(--mountain-green);
+  }
+  
+  .border-midnight {
+    border-color: var(--midnight);
+  }
+  
+  .border-snow {
+    border-color: var(--snow);
+  }
+
+  /* Snowline Gradient Background Utilities */
+  .from-glacier-blue {
+    --tw-gradient-from: var(--glacier-blue) var(--tw-gradient-from-position);
+  }
+
+  .via-snow {
+    --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--snow) var(--tw-gradient-via-position), var(--tw-gradient-to);
+  }
+
+  .to-powder-gray {
+    --tw-gradient-to: var(--powder-gray) var(--tw-gradient-to-position);
+  }
+
+  .from-ultra-ice-blue {
+    --tw-gradient-from: var(--ultra-ice-blue) var(--tw-gradient-from-position);
+  }
+
+  .to-ultra-ice-blue\/80 {
+    --tw-gradient-to: color-mix(in srgb, var(--ultra-ice-blue) 80%, transparent) var(--tw-gradient-to-position);
+  }
+
+  .to-ultra-ice-blue\/90 {
+    --tw-gradient-to: color-mix(in srgb, var(--ultra-ice-blue) 90%, transparent) var(--tw-gradient-to-position);
+  }
+
+  .via-ultra-ice-blue\/90 {
+    --tw-gradient-to: color-mix(in srgb, var(--ultra-ice-blue) 90%, transparent) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), color-mix(in srgb, var(--ultra-ice-blue) 90%, transparent) var(--tw-gradient-via-position), var(--tw-gradient-to);
+  }
+  
+  /* Instant fullscreen utilities - override any transitions */
+  .fullscreen-instant {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  
+  .fullscreen-instant * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Snowline Component Classes */
+@layer components {
+  .snowline-card {
+    @apply rounded-2xl border bg-card shadow-sm;
+    box-shadow: var(--powder-shadow);
+  }
+  
+  .snowline-card-elevated {
+    @apply rounded-2xl border bg-card shadow-lg;
+    box-shadow: var(--mountain-shadow);
+  }
+  
+  .snowline-button-primary {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-6 py-3 text-sm font-semibold transition-all;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 active:scale-95;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+    font-variation-settings: "wght" 600;
+    box-shadow: var(--mountain-shadow);
+  }
+  
+  .snowline-button-secondary {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-6 py-3 text-sm font-semibold transition-all;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 active:scale-95;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2;
+    font-variation-settings: "wght" 500;
+  }
+  
+  .snowline-metric-display {
+    @apply flex flex-col items-center justify-center p-6 text-center;
+  }
+  
+  .snowline-metric-value {
+    @apply text-4xl font-bold tracking-tight;
+    font-variation-settings: "wght" 700;
+    letter-spacing: -0.03em;
+  }
+  
+  .snowline-metric-label {
+    @apply text-sm font-medium text-muted-foreground mt-1;
+    font-variation-settings: "wght" 500;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+  }
+  
+  .snowline-gradient-bg {
+    background: var(--elevation-gradient);
+  }
+  
+  .snowline-tracking-active {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+  
+  .snowline-status-indicator {
+    @apply w-2 h-2 rounded-full;
+    box-shadow: 0 0 8px currentColor;
+  }
+  
+  .snowline-glass {
+    backdrop-filter: blur(12px);
+    background: hsla(var(--background), 0.85);
+    border: 1px solid hsla(var(--border), 0.5);
+  }
+
+  .snowline-glass-strong {
+    backdrop-filter: blur(20px);
+    background: hsla(var(--background), 0.95);
+    border: 1px solid hsla(var(--border), 0.8);
+  }
+
+  .snowline-metric-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .snowline-metric-card:hover {
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+  }
+
+  .snowline-metric-card-compact {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 12px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease-out;
+  }
+
+  .snowline-metric-icon {
+    background: linear-gradient(135deg, var(--color-start), var(--color-end));
+    box-shadow: 0 4px 12px -2px var(--shadow-color);
+  }
+
+  .snowline-metric-icon-compact {
+    background: linear-gradient(135deg, var(--color-start), var(--color-end));
+    box-shadow: 0 2px 8px -1px var(--shadow-color);
+  }
+
+  .snowline-smooth-transition {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Updated map extension class - now with conditional behavior */
+  .snowline-map-extension {
+    transition: height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* FIXED: More specific selectors for map containers only */
+  /* Map container that specifically handles fullscreen transitions */
+  .snowline-map-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0; /* Remove rounded corners from map container only */
+  }
+
+  /* When in fullscreen mode, disable all transitions instantly - MAP ONLY */
+  .snowline-map-container.fullscreen-mode {
+    transition: none !important;
+    animation-duration: 0ms !important;
+    border-radius: 0 !important;
+  }
+
+  /* Map fullscreen class for instant transitions - MAP ONLY */
+  .snowline-map-fullscreen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 50 !important;
+    transition: none !important;
+    animation: none !important;
+    border-radius: 0 !important; /* No rounded corners on map in fullscreen */
+  }
+
+  /* FIXED: Instant fullscreen override - ONLY for map containers, NOT analytics cards */
+  .snowline-map-fullscreen-instant {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    border-radius: 0 !important; /* Only apply to map containers */
+  }
+
+  /* REMOVED: The overly broad selector that was affecting analytics cards */
+  /* This was the problem - it was removing border-radius from ALL elements */
+
+  /* ANALYTICS CARDS CSS-ONLY POSITIONING SYSTEM */
+  /* Main container for analytics cards - uses CSS variables for instant positioning */
+  .snowline-analytics-cards-container {
+    position: absolute;
+    top: var(--analytics-cards-top);
+    bottom: var(--analytics-cards-bottom);
+    left: var(--analytics-cards-left);
+    right: var(--analytics-cards-right);
+    z-index: var(--analytics-cards-z-index);
+    transform: var(--analytics-cards-transform);
+    transition: var(--analytics-cards-transition);
+  }
+
+  /* Main cards layout - responsive based on CSS variables */
+  .snowline-analytics-main-cards {
+    display: var(--analytics-cards-flex-direction);
+    grid-template-columns: var(--analytics-cards-grid-template);
+    gap: var(--analytics-cards-gap);
+    max-width: var(--analytics-cards-max-width);
+    margin: 0 auto;
+    justify-content: var(--analytics-cards-justify);
+  }
+
+  /* FIXED: Individual analytics card styling - PRESERVE rounded corners */
+  .snowline-analytics-card {
+    position: relative;
+    background: white;
+    border: 2px solid;
+    border-radius: var(--analytics-card-border-radius) !important; /* Force rounded corners */
+    padding: var(--analytics-card-padding);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: var(--analytics-cards-transition);
+    min-width: var(--analytics-card-min-width);
+  }
+
+  /* Analytics card icon - responsive sizing via CSS variables */
+  .snowline-analytics-icon {
+    width: var(--analytics-icon-size);
+    height: var(--analytics-icon-size);
+    background: linear-gradient(135deg, var(--icon-color-start), var(--icon-color-end));
+    border-radius: var(--analytics-icon-border-radius) !important; /* Force rounded icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px -2px var(--icon-shadow-color);
+  }
+
+  /* Analytics card text - responsive sizing */
+  .snowline-analytics-text {
+    font-size: var(--analytics-text-size);
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  /* Speed card specific colors */
+  .snowline-analytics-speed {
+    border-color: #fb923c;
+    --icon-color-start: #fb923c;
+    --icon-color-end: #f97316;
+    --icon-shadow-color: rgba(251, 146, 60, 0.3);
+  }
+
+  /* Time card specific colors */
+  .snowline-analytics-time {
+    border-color: #60a5fa;
+    --icon-color-start: #60a5fa;
+    --icon-color-end: #3b82f6;
+    --icon-shadow-color: rgba(96, 165, 250, 0.3);
+  }
+
+  /* Distance card specific colors */
+  .snowline-analytics-distance {
+    border-color: #4ade80;
+    --icon-color-start: #4ade80;
+    --icon-color-end: #22c55e;
+    --icon-shadow-color: rgba(74, 222, 128, 0.3);
+  }
+
+  /* Additional cards for Pro users */
+  .snowline-analytics-additional {
+    border-color: #a855f7;
+    --icon-color-start: #a855f7;
+    --icon-color-end: #9333ea;
+    --icon-shadow-color: rgba(168, 85, 247, 0.3);
+  }
+
+  .snowline-analytics-elevation {
+    border-color: #06b6d4;
+    --icon-color-start: #06b6d4;
+    --icon-color-end: #0891b2;
+    --icon-shadow-color: rgba(6, 182, 212, 0.3);
+  }
+
+  .snowline-analytics-calories {
+    border-color: #ef4444;
+    --icon-color-start: #ef4444;
+    --icon-color-end: #dc2626;
+    --icon-shadow-color: rgba(239, 68, 68, 0.3);
+  }
+
+  /* Locked card styling for Basic users */
+  .snowline-analytics-locked {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(4px);
+    border-color: rgba(156, 163, 175, 0.5);
+    border-radius: var(--analytics-card-border-radius) !important; /* Force rounded corners */
+    --icon-color-start: #9ca3af;
+    --icon-color-end: #6b7280;
+    --icon-shadow-color: rgba(156, 163, 175, 0.2);
+  }
+
+  .snowline-analytics-locked .snowline-analytics-content {
+    opacity: 0.5;
+  }
+
+  .snowline-analytics-lock-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    background: #6b7280;
+    border-radius: 50% !important; /* Force rounded lock icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Pulse animation for live indicators */
+  .snowline-analytics-pulse {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50% !important; /* Force rounded pulse indicator */
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+
+  /* FIXED: Only disable transitions for positioning in fullscreen, preserve visual styles */
+  .fullscreen-mode .snowline-analytics-cards-container {
+    transition: none !important; /* Only positioning transitions disabled */
+  }
+
+  /* Preserve all visual styles including rounded corners for analytics cards */
+  .fullscreen-mode .snowline-analytics-card {
+    border-radius: var(--analytics-card-border-radius) !important; /* Keep rounded */
+  }
+
+  .fullscreen-mode .snowline-analytics-icon {
+    border-radius: var(--analytics-icon-border-radius) !important; /* Keep rounded */
+  }
+
+  .fullscreen-mode .snowline-analytics-pulse {
+    border-radius: 50% !important; /* Keep rounded */
+  }
+
+  .fullscreen-mode .snowline-analytics-lock-icon {
+    border-radius: 50% !important; /* Keep rounded */
+  }
+}
+
+/* Snowline Animations */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+    box-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
+  }
+}
+
+@keyframes tracking-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-5px);
+  }
+  70% {
+    transform: scale(0.98) translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes smooth-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes map-extend {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1.3);
+  }
+}
+
+@keyframes card-cascade {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-tracking-pulse {
+  animation: tracking-pulse 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-smooth-enter {
+  animation: smooth-enter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Disabled map animation for fullscreen - should not animate */
+.animate-map-extend {
+  /* animation: map-extend 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); */
+  animation: none; /* Disable to prevent interference with fullscreen */
+}
+
+.animate-card-cascade {
+  animation: card-cascade 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+/* Mobile-first responsive utilities */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile navigation spacing utilities */
+.pb-nav-mobile {
+  padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+}
+
+.pb-nav-mobile-tracking {
+  padding-bottom: calc(128px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Ensure full height tracking interface */
+.tracking-full-height {
+  min-height: calc(100vh - 80px);
+}
+
+.tracking-full-height-mobile {
+  min-height: calc(100vh - 120px);
+}
+
+/* Additional mobile tracking interface utilities */
+.tracking-interface-spacing {
+  margin-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 768px) {
+  .tracking-interface-mobile {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* iOS and mobile Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  input[type="text"],
+  input[type="email"], 
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  textarea,
+  select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+}
+
+/* Better mobile scrolling for all WebKit browsers */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile-optimized animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .snowline-tracking-active {
+    animation: none;
+  }
+
+  /* FIXED: Only affect map transitions, not analytics card styling */
+  .snowline-map-fullscreen {
+    transition: none !important;
+    animation: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Keep analytics cards rounded even in reduced motion */
+  .snowline-analytics-cards-container {
+    transition: none !important;
+  }
+
+  .snowline-analytics-card {
+    border-radius: var(--analytics-card-border-radius) !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .border {
+    border-width: 2px;
+  }
+  
+  .snowline-card {
+    border-width: 2px;
+  }
+}
+
+/* Enhanced scroll behavior */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+/* Smooth scrolling for all elements - but not during fullscreen transitions */
+* {
+  scroll-behavior: smooth;
+}
+
+.fullscreen-mode * {
+  scroll-behavior: auto; /* Disable smooth scrolling during fullscreen */
+}
+
+/* Enhanced spring animations */
+@keyframes spring-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes smooth-slide-up {
+  0% {
+    transform: translateY(100%) scale(0.98);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-spring-enter {
+  animation: spring-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-smooth-slide-up {
+  animation: smooth-slide-up 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Snowline Mobile Optimizations */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px; /* Prevent zoom on form focus */
+  }
+  
+  /* Better mobile button sizes - 44px minimum touch target */
+  button {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  .snowline-button-primary,
+  .snowline-button-secondary {
+    min-height: 44px;
+    padding: 12px 24px;
+  }
+  
+  /* Mobile-optimized focus states */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+  
+  /* Better mobile tap targets */
+  a, button, [role="button"], input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile metric displays */
+  .snowline-metric-value {
+    @apply text-3xl;
+  }
+  
+  .snowline-metric-display {
+    @apply p-4;
+  }
+
+  /* FIXED: Only affect map transitions on mobile, preserve analytics card styling */
+  .snowline-map-fullscreen {
+    transition: none !important;
+    animation: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Keep analytics cards rounded on mobile */
+  .snowline-analytics-cards-container {
+    transition: none !important;
+  }
+
+  .snowline-analytics-card {
+    border-radius: var(--analytics-card-border-radius) !important;
+  }
+}
+
+/* Touch improvements for all devices with coarse pointers */
+@media (pointer: coarse) {
+  /* Larger touch targets for touch devices */
+  button, 
+  [role="button"], 
+  input[type="button"], 
+  input[type="submit"], 
+  input[type="reset"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+}
+
+/* Safe area support for notched devices */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.pl-safe {
+  padding-left: env(safe-area-inset-left, 0px);
+}
+
+.pr-safe {
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Snowline spacing utilities following 8pt grid */
+.space-snowline-xs { gap: 8px; }
+.space-snowline-sm { gap: 16px; }
+.space-snowline-md { gap: 24px; }
+.space-snowline-lg { gap: 32px; }
+.space-snowline-xl { gap: 40px; }
+.space-snowline-2xl { gap: 48px; }
+
+.p-snowline-xs { padding: 8px; }
+.p-snowline-sm { padding: 16px; }
+.p-snowline-md { padding: 24px; }
+.p-snowline-lg { padding: 32px; }
+.p-snowline-xl { padding: 40px; }
+.p-snowline-2xl { padding: 48px; }
+
+.m-snowline-xs { margin: 8px; }
+.m-snowline-sm { margin: 16px; }
+.m-snowline-md { margin: 24px; }
+.m-snowline-lg { margin: 32px; }
+.m-snowline-xl { margin: 40px; }
+.m-snowline-2xl { margin: 48px; }
